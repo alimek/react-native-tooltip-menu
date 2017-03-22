@@ -1,0 +1,22 @@
+{
+  "name": "react-native-tooltip-menu",
+  "version": "1.0.0",
+  "description": "ReactNative component showing tooltip with menu items.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alimek/react-native-tooltip-menu.git"
+  },
+  "keywords": [
+    "reactnative"
+  ],
+  "author": "Grzegorz Mandziak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alimek/react-native-tooltip-menu/issues"
+  },
+  "homepage": "https://github.com/alimek/react-native-tooltip-menu#readme"
+}
