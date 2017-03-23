@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-import TooltipMenuItem, { itemPropTypes } from './TooltipMenuItem';
+import TooltipMenuItem from './TooltipMenuItem';
 
 const {
   View,
@@ -141,7 +141,13 @@ class Tooltip extends React.Component {
 Tooltip.propTypes = {
   buttonComponent: React.PropTypes.node.isRequired,
   items: React.PropTypes.arrayOf(
-    React.PropTypes.shape(itemPropTypes),
+    React.PropTypes.shape({
+      label: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.func,
+      ]).isRequired,
+      onClick: React.PropTypes.func,
+    }),
   ).isRequired,
   componentWrapperStyle: React.PropTypes.object,
   overlayStyle: React.PropTypes.object,

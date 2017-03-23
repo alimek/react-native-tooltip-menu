@@ -12,16 +12,6 @@ const StylePropType = React.PropTypes.oneOfType([
   React.PropTypes.object,
 ]);
 
-export const itemPropTypes = {
-  onPress: React.PropTypes.func.isRequired,
-  label: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.func,
-  ]).isRequired,
-  containerStyle: StylePropType,
-  labelStyle: StylePropType,
-};
-
 const TooltipMenuItem = ({ onPress, containerStyle, label, labelStyle }) => (
   <TouchableOpacity style={[styles.container, containerStyle]} onPress={onPress}>
     {
@@ -33,7 +23,15 @@ const TooltipMenuItem = ({ onPress, containerStyle, label, labelStyle }) => (
   </TouchableOpacity>
 );
 
-TooltipMenuItem.propTypes = itemPropTypes;
+TooltipMenuItem.propTypes = {
+  onPress: React.PropTypes.func.isRequired,
+  label: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.func,
+  ]).isRequired,
+  containerStyle: StylePropType,
+  labelStyle: StylePropType,
+};
 
 TooltipMenuItem.defaultProps = {
   labelStyle: null,
