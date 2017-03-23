@@ -5,6 +5,9 @@ Currently works only with `iOS`. `Android` coming soon.
 This component is a clickable button which will show you a tooltip menu with clickable menu.
 You can very easily customize how the component will look like.
 
+![alt text](https://github.com/alimek/react-native-tooltip-menu/Doc/screenshot.gif "React Native ToolTip Menu")
+
+
 # How to install
 
 ```bash
