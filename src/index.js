@@ -97,7 +97,7 @@ class Tooltip extends React.Component {
     return (
       <View style={styles.component}>
         <View
-          style={[styles.shadow, componentWrapperStyle]}
+          style={[componentWrapperStyle]}
           onLayout={event => this.setState({ componentHeight: event.nativeEvent.layout.height })}
         >
           <TouchableOpacity onPress={isModalOpen ? this.hideModal : this.openModal}>
@@ -106,7 +106,7 @@ class Tooltip extends React.Component {
         </View>
         <Modal visible={isModalOpen} transparent>
           <View style={[styles.overlay, overlayStyle]}>
-            <View style={[styles.component, styles.shadow]}>
+            <View style={[styles.component]}>
               <Animated.View
                 style={[
                   styles.tooltipContainer,
@@ -186,15 +186,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 15,
     left: 15,
-  },
-  shadow: {
-    shadowColor: '#A6A6A6',
-    shadowOpacity: 0.2,
-    shadowRadius: 0.1,
-    shadowOffset: {
-      height: 3,
-      width: 0,
-    },
   },
   tooltipContainer: {
     backgroundColor: 'white',
