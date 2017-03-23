@@ -36,6 +36,7 @@ class Tooltip extends React.Component {
     this.state = {
       isModalOpen: false,
       opacity: new Animated.Value(0),
+      componentHeight: 0,
     };
 
     this.toggleModal = this.toggleModal.bind(this);
@@ -94,8 +95,11 @@ class Tooltip extends React.Component {
     const widthStyle = mapWight(widthType);
 
     return (
-      <View>
-        <View style={[styles.component, styles.shadow, componentWrapperStyle]}>
+      <View style={styles.component}>
+        <View
+          style={[styles.shadow, componentWrapperStyle]}
+          onLayout={event => this.setState({ componentHeight: event.nativeEvent.layout.height })}
+        >
           <TouchableOpacity onPress={isModalOpen ? this.hideModal : this.openModal}>
             {buttonComponent}
           </TouchableOpacity>
@@ -106,6 +110,9 @@ class Tooltip extends React.Component {
               <Animated.View
                 style={[
                   styles.tooltipContainer,
+                  {
+                    bottom: this.state.componentHeight + 10,
+                  },
                   widthStyle,
                   { opacity: this.state.opacity },
                 ]}
@@ -127,7 +134,7 @@ class Tooltip extends React.Component {
                     />
                   );
                 })}
-                <View style={styles.triangle}/>
+                <View style={styles.triangle} />
               </Animated.View>
               <TouchableOpacity onPress={isModalOpen ? this.hideModal : this.openModal}>
                 {buttonComponent}
@@ -153,8 +160,6 @@ Tooltip.propTypes = {
   ).isRequired,
   componentWrapperStyle: React.PropTypes.object,
   overlayStyle: React.PropTypes.object,
-  labelContainerStyle: React.PropTypes.object,
-  labelStyle: React.PropTypes.object,
   widthType: React.PropTypes.oneOf([
     'auto',
     'half',
@@ -196,7 +201,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     marginBottom: 10,
-    position: 'relative',
+    position: 'absolute',
   },
   triangle: {
     position: 'absolute',
