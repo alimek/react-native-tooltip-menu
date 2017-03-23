@@ -87,6 +87,8 @@ class Tooltip extends React.Component {
       componentWrapperStyle,
       overlayStyle,
       widthType,
+      labelContainerStyle,
+      labelStyle,
     } = this.props;
     const { isModalOpen } = this.state;
     const widthStyle = mapWight(widthType);
@@ -109,8 +111,7 @@ class Tooltip extends React.Component {
                 ]}
               >
                 {items.map((item, index) => {
-                  const { containerStyle, onPress, ...itemProps } = item;
-                  const classes = [containerStyle];
+                  const classes = [labelContainerStyle];
 
                   if (index !== (items.length - 1)) {
                     classes.push(styles.tooltipMargin);
@@ -119,9 +120,10 @@ class Tooltip extends React.Component {
                   return (
                     <TooltipMenuItem
                       key={item.label}
-                      {...itemProps}
-                      onPress={() => this.handleClick(onPress)}
+                      label={item.label}
+                      onPress={() => this.handleClick(item.onPress)}
                       containerStyle={classes}
+                      labelStyle={labelStyle}
                     />
                   );
                 })}
@@ -151,6 +153,8 @@ Tooltip.propTypes = {
   ).isRequired,
   componentWrapperStyle: React.PropTypes.object,
   overlayStyle: React.PropTypes.object,
+  labelContainerStyle: React.PropTypes.object,
+  labelStyle: React.PropTypes.object,
   widthType: React.PropTypes.oneOf([
     'auto',
     'half',
