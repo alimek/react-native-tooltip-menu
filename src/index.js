@@ -186,7 +186,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 15,
     left: 15,
-    borderRadius: 30,
   },
   shadow: {
     shadowColor: '#A6A6A6',
