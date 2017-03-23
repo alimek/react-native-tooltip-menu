@@ -24,7 +24,7 @@ const Example = () => (
           style={{
             backgroundColor: 'purple',
             padding: 10,
-            borderRadius: 10
+            borderRadius: 25
           }}
         >
           <Text style={{ color: 'white', flex: 1 }}>Click me to show tooltip!</Text>

@@ -106,40 +106,42 @@ class Tooltip extends React.Component {
         </View>
         <Modal visible={isModalOpen} transparent>
           <View style={[styles.overlay, overlayStyle]}>
-            <View style={[styles.component]}>
-              <Animated.View
-                style={[
-                  styles.tooltipContainer,
-                  {
-                    bottom: this.state.componentHeight + 10,
-                  },
-                  widthStyle,
-                  { opacity: this.state.opacity },
-                ]}
-              >
-                {items.map((item, index) => {
-                  const classes = [labelContainerStyle];
+            <TouchableOpacity activeOpacity={1} focusedOpacity={1} style={{ flex: 1 }} onPress={isModalOpen ? this.hideModal : this.openModal}>
+              <View style={[styles.component]}>
+                <Animated.View
+                  style={[
+                    styles.tooltipContainer,
+                    {
+                      bottom: this.state.componentHeight + 10,
+                    },
+                    widthStyle,
+                    { opacity: this.state.opacity },
+                  ]}
+                >
+                  {items.map((item, index) => {
+                    const classes = [labelContainerStyle];
 
-                  if (index !== (items.length - 1)) {
-                    classes.push(styles.tooltipMargin);
-                  }
+                    if (index !== (items.length - 1)) {
+                      classes.push(styles.tooltipMargin);
+                    }
 
-                  return (
-                    <TooltipMenuItem
-                      key={item.label}
-                      label={item.label}
-                      onPress={() => this.handleClick(item.onPress)}
-                      containerStyle={classes}
-                      labelStyle={labelStyle}
-                    />
-                  );
-                })}
-                <View style={styles.triangle} />
-              </Animated.View>
-              <TouchableOpacity onPress={isModalOpen ? this.hideModal : this.openModal}>
-                {buttonComponent}
-              </TouchableOpacity>
-            </View>
+                    return (
+                      <TooltipMenuItem
+                        key={item.label}
+                        label={item.label}
+                        onPress={() => this.handleClick(item.onPress)}
+                        containerStyle={classes}
+                        labelStyle={labelStyle}
+                      />
+                    );
+                  })}
+                  <View style={styles.triangle}/>
+                </Animated.View>
+                <TouchableOpacity onPress={isModalOpen ? this.hideModal : this.openModal}>
+                  {buttonComponent}
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
           </View>
         </Modal>
       </View>
@@ -211,4 +213,3 @@ const styles = StyleSheet.create({
     borderLeftColor: 'transparent',
   },
 });
-
