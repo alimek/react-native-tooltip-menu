@@ -25,7 +25,10 @@ const TooltipMenuItem = ({ onPress, containerStyle, label, labelStyle }) => (
 
 TooltipMenuItem.propTypes = {
   onPress: React.PropTypes.func.isRequired,
-  label: React.PropTypes.string.isRequired,
+  label: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.func,
+  ]).isRequired,
   containerStyle: StylePropType,
   labelStyle: StylePropType,
 };
