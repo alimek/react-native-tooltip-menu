@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-import TooltipMenuItem from './TooltipMenuItem';
+import TooltipMenuItem, { itemPropTypes } from './TooltipMenuItem';
 
 const {
   View,
@@ -53,10 +53,10 @@ class Tooltip extends React.Component {
     Animated
       .timing(
         this.state.opacity,
-      {
-        toValue: 1,
-        duration: 300,
-      },
+        {
+          toValue: 1,
+          duration: 300,
+        },
       )
       .start();
   }
@@ -65,10 +65,10 @@ class Tooltip extends React.Component {
     Animated
       .timing(
         this.state.opacity,
-      {
-        toValue: 0,
-        duration: 300,
-      },
+        {
+          toValue: 0,
+          duration: 300,
+        },
       )
       .start(this.toggleModal);
   }
@@ -125,7 +125,7 @@ class Tooltip extends React.Component {
                     />
                   );
                 })}
-                <View style={styles.triangle} />
+                <View style={styles.triangle}/>
               </Animated.View>
               <TouchableOpacity onPress={isModalOpen ? this.hideModal : this.openModal}>
                 {buttonComponent}
@@ -141,10 +141,7 @@ class Tooltip extends React.Component {
 Tooltip.propTypes = {
   buttonComponent: React.PropTypes.node.isRequired,
   items: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      label: React.PropTypes.string,
-      onClick: React.PropTypes.func,
-    }),
+    React.PropTypes.shape(itemPropTypes),
   ).isRequired,
   componentWrapperStyle: React.PropTypes.object,
   overlayStyle: React.PropTypes.object,
