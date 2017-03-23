@@ -145,7 +145,7 @@ Tooltip.propTypes = {
       label: React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.func,
-      ]).isRequired,
+      ]),
       onClick: React.PropTypes.func,
     }),
   ).isRequired,
