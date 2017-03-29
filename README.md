@@ -5,7 +5,7 @@ Currently works only with `iOS` and `Android`.
 Component for specfied case. Left bottom button with nice looking menu tooltip with animation after click.
 
 ![alt text](https://github.com/alimek/react-native-tooltip-menu/raw/master/Doc/ios.gif "React Native ToolTip Menu")
-![alt text](https://github.com/alimek/react-native-tooltip-menu/raw/master/Doc/andorid.gif "React Native ToolTip Menu")
+![alt text](https://github.com/alimek/react-native-tooltip-menu/raw/master/Doc/android.gif "React Native ToolTip Menu")
 
 
 # How to install
