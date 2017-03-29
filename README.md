@@ -16,7 +16,7 @@ Via NPM
 npm install react-native-tooltip-menu --save
 ```
 
-or via Yarn
+or via yarn
 ```bash
 yarn add react-native-tooltip-menu --save
 ```
