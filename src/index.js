@@ -91,7 +91,8 @@ class Tooltip extends React.Component {
       labelContainerStyle,
       labelStyle,
     } = this.props;
-    const { isModalOpen, onRequestClose } = this.state;
+    const { isModalOpen } = this.state;
+    const { onRequestClose } = this.props;
     const widthStyle = mapWight(widthType);
 
     return (
@@ -110,7 +111,11 @@ class Tooltip extends React.Component {
           onRequestClose={onRequestClose}
         >
           <View style={[styles.overlay, overlayStyle]}>
-            <TouchableOpacity activeOpacity={1} focusedOpacity={1} style={{ flex: 1 }} onPress={isModalOpen ? this.hideModal : this.openModal}>
+            <TouchableOpacity
+              activeOpacity={1}
+              focusedOpacity={1} style={{ flex: 1 }}
+              onPress={isModalOpen ? this.hideModal : this.openModal}
+            >
               <View style={[styles.component]}>
                 <Animated.View
                   style={[
@@ -139,8 +144,8 @@ class Tooltip extends React.Component {
                       />
                     );
                   })}
-                  <View style={styles.triangle}/>
                 </Animated.View>
+                <Animated.View style={[styles.triangle, { opacity: this.state.opacity }]} />
                 <TouchableOpacity onPress={isModalOpen ? this.hideModal : this.openModal}>
                   {buttonComponent}
                 </TouchableOpacity>
@@ -166,6 +171,8 @@ Tooltip.propTypes = {
   ).isRequired,
   componentWrapperStyle: React.PropTypes.object,
   overlayStyle: React.PropTypes.object,
+  labelContainerStyle: React.PropTypes.object,
+  labelStyle: React.PropTypes.object,
   widthType: React.PropTypes.oneOf([
     'auto',
     'half',
@@ -198,15 +205,14 @@ const styles = StyleSheet.create({
   tooltipContainer: {
     backgroundColor: 'white',
     borderRadius: 10,
-    marginBottom: 10,
     position: 'absolute',
   },
   triangle: {
     position: 'absolute',
-    bottom: -10,
-    marginLeft: 22,
-    width: 0,
-    height: 0,
+    top: -10,
+    left: 22,
+    width: 10,
+    height: 10,
     backgroundColor: 'transparent',
     borderStyle: 'solid',
     borderTopWidth: 10,

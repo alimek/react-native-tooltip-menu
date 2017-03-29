@@ -3,6 +3,7 @@ import ReactNative from 'react-native';
 
 const {
   Text,
+  View,
   StyleSheet,
   TouchableOpacity,
 } = ReactNative;
@@ -13,14 +14,15 @@ const StylePropType = React.PropTypes.oneOfType([
 ]);
 
 const TooltipMenuItem = ({ onPress, containerStyle, label, labelStyle }) => (
-  <TouchableOpacity style={[styles.container, containerStyle]} onPress={onPress}>
-    {
-      typeof label === 'string' ?
-        <Text style={[labelStyle]}>{label}</Text> :
-        label()
-    }
-
-  </TouchableOpacity>
+  <View style={[styles.container, containerStyle]}>
+    <TouchableOpacity onPress={onPress}>
+      {
+        typeof label === 'string' ?
+          <Text style={[labelStyle]}>{label}</Text> :
+          label()
+      }
+    </TouchableOpacity>
+  </View>
 );
 
 TooltipMenuItem.propTypes = {
