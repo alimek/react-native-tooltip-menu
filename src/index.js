@@ -91,7 +91,7 @@ class Tooltip extends React.Component {
       labelContainerStyle,
       labelStyle,
     } = this.props;
-    const { isModalOpen } = this.state;
+    const { isModalOpen, onRequestClose } = this.state;
     const widthStyle = mapWight(widthType);
 
     return (
@@ -104,7 +104,11 @@ class Tooltip extends React.Component {
             {buttonComponent}
           </TouchableOpacity>
         </View>
-        <Modal visible={isModalOpen} transparent>
+        <Modal
+          visible={isModalOpen}
+          transparent
+          onRequestClose={onRequestClose}
+        >
           <View style={[styles.overlay, overlayStyle]}>
             <TouchableOpacity activeOpacity={1} focusedOpacity={1} style={{ flex: 1 }} onPress={isModalOpen ? this.hideModal : this.openModal}>
               <View style={[styles.component]}>
@@ -167,10 +171,12 @@ Tooltip.propTypes = {
     'half',
     'full',
   ]),
+  onRequestClose: React.PropTypes.func,
 };
 
 Tooltip.defaultProps = {
   widthType: 'half',
+  onRequestClose: () => {},
 };
 
 export default Tooltip;
