@@ -50,16 +50,19 @@ class Tooltip extends React.Component {
   }
 
   openModal() {
-    this.toggleModal();
-    Animated
-      .timing(
-        this.state.opacity,
-        {
-          toValue: 1,
-          duration: 300,
-        },
-      )
-      .start();
+    this.props.buttonComponent.measure((fx, fy, width, height, px, py) => {
+      console.warn("open");
+      this.toggleModal();
+      Animated
+        .timing(
+          this.state.opacity,
+          {
+            toValue: 1,
+            duration: 300,
+          },
+        )
+        .start();
+    });
   }
 
   hideModal() {
