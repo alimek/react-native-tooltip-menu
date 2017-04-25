@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactNative from 'react-native';
 
-import TooltipMenuItem from './TooltipMenuItem';
+import PopoverTooltipItem from './PopoverTooltipItem';
 
 const {
   View,
@@ -16,22 +16,7 @@ const {
 
 const window = Dimensions.get('window');
 
-const mapWight = (type) => {
-  switch (type) {
-    case 'half':
-      return {
-        width: window.width / 2,
-      };
-    case 'full':
-      return {
-        width: window.width * 0.9,
-      };
-    default:
-      return null;
-  }
-};
-
-class Tooltip extends React.Component {
+class PopoverTooltip extends React.Component {
   constructor(props) {
     super(props);
 
@@ -90,7 +75,6 @@ class Tooltip extends React.Component {
     } = this.props;
     const { isModalOpen } = this.state;
     const { onRequestClose } = this.props;
-    const widthStyle = mapWight(widthType);
 
     return (
       <TouchableOpacity
@@ -115,6 +99,7 @@ class Tooltip extends React.Component {
               <Animated.View
                 style={[
                   styles.tooltipContainer,
+                  this.props.tooltipContainerStyle,
                   {
                     left: this.state.tooltip_container_x,
                     top: this.state.tooltip_container_y,
@@ -173,7 +158,7 @@ class Tooltip extends React.Component {
                       }
 
                       return (
-                        <TooltipMenuItem
+                        <PopoverTooltipItem
                           key={item.label}
                           label={item.label}
                           onPress={() => this.handleClick(item.onPress)}
@@ -253,7 +238,7 @@ class Tooltip extends React.Component {
   }
 }
 
-Tooltip.propTypes = {
+PopoverTooltip.propTypes = {
   buttonComponent: React.PropTypes.node.isRequired,
   items: React.PropTypes.arrayOf(
     React.PropTypes.shape({
@@ -273,15 +258,19 @@ Tooltip.propTypes = {
     'half',
     'full',
   ]),
+  animationType: React.PropTypes.oneOf([
+    'timing',
+    'spring'
+  ]),
   onRequestClose: React.PropTypes.func
 };
 
-Tooltip.defaultProps = {
+PopoverTooltip.defaultProps = {
   widthType: 'half',
   onRequestClose: () => {},
 };
 
-export default Tooltip;
+export default PopoverTooltip;
 
 const styles = StyleSheet.create({
   overlay: {

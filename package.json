@@ -1,6 +1,6 @@
 {
-  "name": "react-native-tooltip-menu",
-  "version": "1.0.4",
+  "name": "react-native-popover-tooltip",
+  "version": "1.0.0",
   "description": "ReactNative component showing tooltip with menu items.",
   "main": "src/index.js",
   "scripts": {
@@ -8,15 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alimek/react-native-tooltip-menu.git"
+    "url": "git+https://github.com/wookoinc/react-native-popover-tooltip"
   },
   "keywords": [
-    "reactnative"
+    "reactnative",
+    "popover",
+    "tooltip"
   ],
-  "author": "Grzegorz Mandziak",
+  "author": "Lu Sun",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alimek/react-native-tooltip-menu/issues"
+    "url": "https://github.com/wookoinc/react-native-popover-tooltip/issues"
   },
-  "homepage": "https://github.com/alimek/react-native-tooltip-menu#readme"
+  "homepage": "https://github.com/wookoinc/react-native-popover-tooltip"
 }
