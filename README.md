@@ -2,6 +2,7 @@
 
 Currently works only with `iOS` and `Android`.
 
+This component is modified from another project [react-native-tooltip-menu](https://github.com/alimek/react-native-tooltip-menu)
 
 # How to install
 
