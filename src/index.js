@@ -37,18 +37,15 @@ class Tooltip extends React.Component {
 
     this.state = {
       isModalOpen: false,
-      componentHeight: 0,
       x: 0,
       y: 0,
       width: 0,
       height: 0,
+      opacity: new Animated.Value(0),
       tooltip_container_scale: new Animated.Value(0),
-      base_container_scale: 1,
+      button_component_container_scale: 1,
       tooptip_triangle_down: true,
       tooltip_triangle_left_margin: 0,
-      tooltip_container_dimension: {width: 0, height:0},
-      tooltip_container_opacity: 0,
-      tooltip_overlay_opacity: 0,
       will_popup: false
     };
 
@@ -102,7 +99,6 @@ class Tooltip extends React.Component {
         onLongPress={isModalOpen? this.hideModal : this.openModal}
         delayLongPress={100}
         activeOpacity={1.0}
-        onLayout={event => this.setState({ componentHeight: event.nativeEvent.layout.height })}
       >
         {buttonComponent}
         <Modal
@@ -110,7 +106,7 @@ class Tooltip extends React.Component {
           transparent
           onRequestClose={onRequestClose}
         >
-          <Animated.View style={[styles.overlay, overlayStyle, {opacity:this.state.tooltip_overlay_opacity}]}>
+          <Animated.View style={[styles.overlay, overlayStyle, {opacity:this.state.opacity}]}>
             <TouchableOpacity
               activeOpacity={1}
               focusedOpacity={1} style={{ flex: 1 }}
@@ -124,8 +120,7 @@ class Tooltip extends React.Component {
                     top: this.state.tooltip_container_y,
                     transform: [
                       {scale: this.state.tooltip_container_scale}
-                    ],
-                    opacity: this.state.tooltip_container_opacity
+                    ]
                   }
                 ]}
               >
@@ -150,20 +145,12 @@ class Tooltip extends React.Component {
                           inputRange: [0, 1],
                           outputRange: [tooltip_container_y_final+tooltip_container_height/2+20, tooltip_container_y_final]
                         });
-                        let tooltip_container_opacity = this.state.tooltip_container_scale.interpolate({
+                        let button_component_container_scale = this.state.tooltip_container_scale.interpolate({
                           inputRange: [0, 1],
-                          outputRange: [0, 1]
-                        });
-                        let tooltip_overlay_opacity = this.state.tooltip_container_scale.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [0, 1]
-                        });
-                        let base_container_scale = this.state.tooltip_container_scale.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [1, 1.1]
+                          outputRange: [1, this.props.buttonComponentExpandRatio? this.props.buttonComponentExpandRatio : 1.1]
                         });
 
-                        this.setState({x:pageX, y:pageY, width:width, height:height, tooltip_container_x:tooltip_container_x, tooltip_container_y:tooltip_container_y, tooltip_triangle_down:tooltip_triangle_down, tooltip_triangle_left_margin:pageX+width/2-tooltip_container_x_final-10, tooltip_container_opacity:tooltip_container_opacity, tooltip_overlay_opacity:tooltip_overlay_opacity, base_container_scale:base_container_scale}, ()=>{
+                        this.setState({x:pageX, y:pageY, width:width, height:height, tooltip_container_x:tooltip_container_x, tooltip_container_y:tooltip_container_y, tooltip_triangle_down:tooltip_triangle_down, tooltip_triangle_left_margin:pageX+width/2-tooltip_container_x_final-10, button_component_container_scale:button_component_container_scale}, ()=>{
                           this._showZoomingInAnimation();
                         });
                       });
@@ -202,14 +189,14 @@ class Tooltip extends React.Component {
                   }
                 </View>
               </Animated.View>
-              <Animated.View style={[{position:'absolute', left:this.state.x, top:this.state.y, width:this.state.width, height:this.state.height, backgroundColor:'transparent'}, {transform: [{scale: this.state.base_container_scale}]}]}>
-                <TouchableOpacity
-                  onPress={isModalOpen ? this.hideModal : this.openModal}
-                  activeOpacity={1.0}
-                >
-                  {buttonComponent}
-                </TouchableOpacity>
-              </Animated.View>
+            </TouchableOpacity>
+          </Animated.View>
+          <Animated.View style={[{position:'absolute', left:this.state.x, top:this.state.y, width:this.state.width, height:this.state.height, backgroundColor:'transparent', opacity:1}, {transform: [{scale: this.state.button_component_container_scale}]}]}>
+            <TouchableOpacity
+              onPress={isModalOpen ? this.hideModal : this.openModal}
+              activeOpacity={1.0}
+            >
+              {buttonComponent}
             </TouchableOpacity>
           </Animated.View>
         </Modal>
@@ -218,23 +205,51 @@ class Tooltip extends React.Component {
   }
 
   _showZoomingInAnimation() {
-    Animated.spring(
+    let tooltip_animation = Animated.timing(
       this.state.tooltip_container_scale,
       {
         toValue: 1,
-        tension: 100,
-        friction: 7
+        duration: this.props.timingConfig && this.props.timmingConfig.duration? this.props.timmingConfig.duration : 200
       }
-    ).start();
+    );
+    if (this.props.animationType == 'spring') {
+      tooltip_animation = Animated.spring(
+        this.state.tooltip_container_scale,
+        {
+          toValue: 1,
+          tension: this.props.springConfig && this.props.springConfig.tension? this.props.springConfig.tension : 100,
+          friction: this.props.springConfig && this.props.springConfig.friction? this.props.springConfig.friction : 7
+        }
+      );
+    }
+    Animated.parallel([
+      tooltip_animation,
+      Animated.timing(
+        this.state.opacity,
+        {
+          toValue: 1,
+          duration: this.props.opacityChangeDuration? this.props.opacityChangeDuration : 200
+        }
+      )
+    ]).start();
   }
   _showZoomingOutAnimation() {
-    Animated.timing(
-      this.state.tooltip_container_scale,
-      {
-        toValue: 0,
-        duration: 200
-      }
-    ).start(this.toggleModal);
+    Animated.parallel([
+      Animated.timing(
+        this.state.tooltip_container_scale,
+        {
+          toValue: 0,
+          duration: this.props.opacityChangeDuration? this.props.opacityChangeDuration : 200
+        }
+      ),
+      Animated.timing(
+        this.state.opacity,
+        {
+          toValue: 0,
+          duration: this.props.opacityChangeDuration? this.props.opacityChangeDuration : 200
+        }
+      )
+    ]).start(this.toggleModal);
   }
 }
 
@@ -258,7 +273,7 @@ Tooltip.propTypes = {
     'half',
     'full',
   ]),
-  onRequestClose: React.PropTypes.func,
+  onRequestClose: React.PropTypes.func
 };
 
 Tooltip.defaultProps = {
