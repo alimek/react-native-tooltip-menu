@@ -11,7 +11,8 @@ const {
   StyleSheet,
   Dimensions,
   Text,
-  Easing
+  Easing,
+  PanResponder
 } = ReactNative;
 
 const window = Dimensions.get('window');
@@ -73,20 +74,20 @@ class PopoverTooltip extends React.Component {
       labelContainerStyle,
       labelStyle,
     } = this.props;
-    const { isModalOpen } = this.state;
     const { onRequestClose } = this.props;
 
     return (
       <TouchableOpacity
         ref={component => this._component_wrapper = component}
         style={[componentWrapperStyle]}
-        onLongPress={isModalOpen? this.hideModal : this.openModal}
+        onLongPress={this.toggle.bind(this)}
         delayLongPress={100}
         activeOpacity={1.0}
+        {...this._panResponder.panHandlers}
       >
         {buttonComponent}
         <Modal
-          visible={isModalOpen}
+          visible={this.state.isModalOpen}
           transparent
           onRequestClose={onRequestClose}
         >
@@ -94,7 +95,7 @@ class PopoverTooltip extends React.Component {
             <TouchableOpacity
               activeOpacity={1}
               focusedOpacity={1} style={{ flex: 1 }}
-              onPress={isModalOpen ? this.hideModal : this.openModal}
+              onPress={this.toggle.bind(this)}
             >
               <Animated.View
                 style={[
@@ -178,7 +179,7 @@ class PopoverTooltip extends React.Component {
           </Animated.View>
           <Animated.View style={[{position:'absolute', left:this.state.x, top:this.state.y, width:this.state.width, height:this.state.height, backgroundColor:'transparent', opacity:1}, {transform: [{scale: this.state.button_component_container_scale}]}]}>
             <TouchableOpacity
-              onPress={isModalOpen ? this.hideModal : this.openModal}
+              onPress={this.toggle.bind(this)}
               activeOpacity={1.0}
             >
               {buttonComponent}
@@ -235,6 +236,10 @@ class PopoverTooltip extends React.Component {
         }
       )
     ]).start(this.toggleModal);
+  }
+
+  toggle() {
+    this.state.isModalOpen? this.hideModal() : this.openModal();
   }
 }
 

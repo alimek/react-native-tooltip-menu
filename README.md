@@ -18,7 +18,7 @@ import PopoverTooltip from 'react-native-popover-tooltip';
 
 # Configuration
 
-## ReactNativeTooltipMenu:
+## Props:
 
 | Property | Type | Default | Description |
 |----------------|---------------|-----------|--------------------------------------|
@@ -33,3 +33,9 @@ import PopoverTooltip from 'react-native-popover-tooltip';
 | animationType | `String` | timing | Tooptip popping animation. timing = popup within a specific duration, spring = popup with a spring bumper model.
 | timingConfig | `Object` | {duration: 200} | Configuration of timing animation. Attribute duration is the duration of the animation.
 | springConfig | `Object` | {tension: 100, friction: 7} | Configuration of spring animation. Attributes tension and friction control the behavior of the spring bumper effect.
+
+## Methods:
+
+| Property | Description |
+|----------------|---------------|
+| toggle | Open or hide popover tooltip |
