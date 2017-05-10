@@ -89,6 +89,7 @@ class Tooltip extends React.Component {
       overlayStyle,
       widthType,
       labelContainerStyle,
+      touchableItemStyle,
       labelStyle,
     } = this.props;
     const { isModalOpen } = this.state;
@@ -140,6 +141,7 @@ class Tooltip extends React.Component {
                         label={item.label}
                         onPress={() => this.handleClick(item.onPress)}
                         containerStyle={classes}
+                        touchableStyle={touchableItemStyle}
                         labelStyle={labelStyle}
                       />
                     );
@@ -172,6 +174,7 @@ Tooltip.propTypes = {
   componentWrapperStyle: React.PropTypes.object,
   overlayStyle: React.PropTypes.object,
   labelContainerStyle: React.PropTypes.object,
+  touchableItemStyle: React.PropTypes.object,
   labelStyle: React.PropTypes.object,
   widthType: React.PropTypes.oneOf([
     'auto',
