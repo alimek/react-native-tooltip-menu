@@ -11,8 +11,7 @@ const {
   StyleSheet,
   Dimensions,
   Text,
-  Easing,
-  PanResponder
+  Easing
 } = ReactNative;
 
 const window = Dimensions.get('window');
@@ -83,7 +82,6 @@ class PopoverTooltip extends React.Component {
         onLongPress={this.toggle.bind(this)}
         delayLongPress={100}
         activeOpacity={1.0}
-        {...this._panResponder.panHandlers}
       >
         {buttonComponent}
         <Modal
