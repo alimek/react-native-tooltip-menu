@@ -17,6 +17,7 @@ const {
 const window = Dimensions.get('window');
 
 class PopoverTooltip extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -76,7 +77,6 @@ class PopoverTooltip extends React.Component {
       items,
       componentWrapperStyle,
       overlayStyle,
-      widthType,
       labelContainerStyle,
       labelStyle,
     } = this.props;
@@ -88,7 +88,7 @@ class PopoverTooltip extends React.Component {
         style={[componentWrapperStyle]}
         onPress={this.props.onPress}
         onLongPress={this.toggle.bind(this)}
-        delayLongPress={100}
+        delayLongPress={this.props.delayLongPress}
         activeOpacity={1.0}
       >
         <Animated.View style={{opacity:this.state.opposite_opacity}}>
@@ -266,11 +266,6 @@ PopoverTooltip.propTypes = {
   overlayStyle: React.PropTypes.object,
   labelContainerStyle: React.PropTypes.object,
   labelStyle: React.PropTypes.object,
-  widthType: React.PropTypes.oneOf([
-    'auto',
-    'half',
-    'full',
-  ]),
   animationType: React.PropTypes.oneOf([
     'timing',
     'spring'
@@ -279,8 +274,8 @@ PopoverTooltip.propTypes = {
 };
 
 PopoverTooltip.defaultProps = {
-  widthType: 'half',
   onRequestClose: () => {},
+  delayLongPress: 100
 };
 
 export default PopoverTooltip;
