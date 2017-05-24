@@ -39,6 +39,13 @@ class PopoverTooltip extends React.Component {
     this.hideModal = this.hideModal.bind(this);
   }
 
+  componentWillMount() {
+    this.setState({opposite_opacity: this.state.opacity.interpolate({
+      inputRange: [0, 1],
+      outputRange: [1, 0]
+    })});
+  }
+
   toggleModal() {
     const { isModalOpen } = this.state;
     this.setState({ isModalOpen: !isModalOpen });
@@ -79,11 +86,14 @@ class PopoverTooltip extends React.Component {
       <TouchableOpacity
         ref={component => this._component_wrapper = component}
         style={[componentWrapperStyle]}
+        onPress={this.props.onPress}
         onLongPress={this.toggle.bind(this)}
         delayLongPress={100}
         activeOpacity={1.0}
       >
-        {buttonComponent}
+        <Animated.View style={{opacity:this.state.opposite_opacity}}>
+          {buttonComponent}
+        </Animated.View>
         <Modal
           visible={this.state.isModalOpen}
           transparent
