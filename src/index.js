@@ -102,7 +102,7 @@ class Tooltip extends React.Component {
           style={[componentWrapperStyle]}
           onLayout={event => this.setState({ componentHeight: event.nativeEvent.layout.height })}
         >
-          <TouchableOpacity onPress={isModalOpen ? this.hideModal : this.openModal}>
+          <TouchableOpacity onPress={this.openModal}>
             {buttonComponent}
           </TouchableOpacity>
         </View>
@@ -115,7 +115,7 @@ class Tooltip extends React.Component {
             <TouchableOpacity
               activeOpacity={1}
               focusedOpacity={1} style={{ flex: 1 }}
-              onPress={isModalOpen ? this.hideModal : this.openModal}
+              onPress={this.hideModal}
             >
               <View style={[styles.component]}>
                 <Animated.View
