@@ -18,8 +18,10 @@ import PopoverTooltip from 'react-native-popover-tooltip';
 
 # Example
 
+![](https://github.com/wookoinc/react-native-popover-tooltip/blob/master/demo/screencast.gif?raw=true)
+
 ```javascript
-lass App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,6 +78,8 @@ lass App extends React.Component {
             }
           ]}
           animationType='spring' // spring-damper animation
+          springConfig={{tension: 100, friction: 3}} // tension controls the potential of the spring effect,
+                                                     // friction controls the damper effect
           />
 
         <View style={{height: 40}}/>
@@ -179,11 +183,10 @@ lass App extends React.Component {
 
 | Property | Type | Default | Description |
 |----------------|---------------|-----------|--------------------------------------|
-| buttonComponent | |||
+| buttonComponent | node ||| Component that can be long pressed
 | items | `Array` | | Items to be rendered in menu. Each of item requires `label` as `string` or `function` if you want to render your own component and `onClick` as `function` to be called when you click item. |
 | componentWrapperStyle | Object | Optional | Style `Object` if you want to overwrite wrapper for your `buttonComponent`
 | overlayStyle | Object | Optional | Style `Object` if you want to overwrite overlay style's.
-| this.props.opacityChangeDuration | `number` | 200 | Duration that the screen-size overlay changes from transparent to non-transparent and vice verse.
 | onRequestClose | `function` | Optional, default `() => {}` | Modal onRequestClose required function on Android 
 | labelContainerStyle | `Object` | Optional | Style `Object` if you want to change default `TooltipMenuItem` View's style.
 | tooltipContainerStyle | `Object` | Optional | Style of the container of the entire tooltip menu.
