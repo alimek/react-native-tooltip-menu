@@ -141,7 +141,7 @@ class PopoverTooltip extends React.Component {
                         });
                         let button_component_container_scale = this.state.tooltip_container_scale.interpolate({
                           inputRange: [0, 1],
-                          outputRange: [1, this.props.buttonComponentExpandRatio? this.props.buttonComponentExpandRatio : 1.1]
+                          outputRange: [1, this.props.buttonComponentExpandRatio]
                         });
 
                         this.setState({x:pageX, y:pageY, width:width, height:height, tooltip_container_x:tooltip_container_x, tooltip_container_y:tooltip_container_y, tooltip_triangle_down:tooltip_triangle_down, tooltip_triangle_left_margin:pageX+width/2-tooltip_container_x_final-10, button_component_container_scale:button_component_container_scale}, ()=>{
@@ -152,18 +152,18 @@ class PopoverTooltip extends React.Component {
                       this.setState({will_popup:false});
                     }
                   }}
-                  style={[{backgroundColor:'transparent', alignItems:'flex-start'}]}
+                  style={{backgroundColor:'transparent', alignItems:'flex-start'}}
                 >
                   {this.state.tooltip_triangle_down
                   ? null
-                  : <View style={[styles.triangle_up, {marginLeft:this.state.tooltip_triangle_left_margin}]} />
+                  : <View style={[styles.triangle_up, {marginLeft:this.state.tooltip_triangle_left_margin}, this.props.labelContainerStyle? {borderBottomColor: this.props.labelContainerStyle.backgroundColor} : null]} />
                   }
-                  <View style={{borderRadius:5, backgroundColor:'white', alignSelf:'stretch'}}>
+                  <View style={[{borderRadius:5, backgroundColor:'white', alignSelf:'stretch', overflow:'hidden'}, this.props.tooltipContainerStyle]}>
                     {items.map((item, index) => {
                       const classes = [labelContainerStyle];
 
                       if (index !== (items.length - 1)) {
-                        classes.push(styles.tooltipMargin);
+                        classes.push([styles.tooltipMargin, {borderBottomColor:this.props.labelSeparatorColor}]);
                       }
 
                       return (
@@ -178,7 +178,7 @@ class PopoverTooltip extends React.Component {
                     })}
                   </View>
                   {this.state.tooltip_triangle_down
-                  ? <View style={[styles.triangle_down, {marginLeft:this.state.tooltip_triangle_left_margin}]} />
+                  ? <View style={[styles.triangle_down, {marginLeft:this.state.tooltip_triangle_left_margin}, this.props.labelContainerStyle? {borderTopColor: this.props.labelContainerStyle.backgroundColor} : null]} />
                   : null
                   }
                 </View>
@@ -203,7 +203,7 @@ class PopoverTooltip extends React.Component {
       this.state.tooltip_container_scale,
       {
         toValue: 1,
-        duration: this.props.timingConfig && this.props.timmingConfig.duration? this.props.timmingConfig.duration : 200
+        duration: this.props.timmingConfig && this.props.timmingConfig.duration? this.props.timmingConfig.duration : 200
       }
     );
     if (this.props.animationType == 'spring') {
@@ -253,6 +253,7 @@ class PopoverTooltip extends React.Component {
 
 PopoverTooltip.propTypes = {
   buttonComponent: React.PropTypes.node.isRequired,
+  buttonComponentExpandRatio: React.PropTypes.number,
   items: React.PropTypes.arrayOf(
     React.PropTypes.shape({
       label: React.PropTypes.oneOfType([
@@ -264,7 +265,9 @@ PopoverTooltip.propTypes = {
   ).isRequired,
   componentWrapperStyle: React.PropTypes.object,
   overlayStyle: React.PropTypes.object,
+  tooltipContainerStyle: React.PropTypes.object,
   labelContainerStyle: React.PropTypes.object,
+  labelSeparatorColor: React.PropTypes.string,
   labelStyle: React.PropTypes.object,
   animationType: React.PropTypes.oneOf([
     'timing',
@@ -274,6 +277,8 @@ PopoverTooltip.propTypes = {
 };
 
 PopoverTooltip.defaultProps = {
+  buttonComponentExpandRatio: 1.0,
+  labelSeparatorColor: '#E1E1E1',
   onRequestClose: () => {},
   delayLongPress: 100
 };
@@ -287,7 +292,6 @@ const styles = StyleSheet.create({
   },
   tooltipMargin: {
     borderBottomWidth: 1,
-    borderBottomColor: '#E1E1E1',
   },
   tooltipContainer: {
     backgroundColor: 'transparent',
