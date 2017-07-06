@@ -10,7 +10,7 @@ This component is modified from another project [react-native-tooltip-menu](http
 npm install react-native-popover-tooltip --save
 ```
 
-then 
+To use the component, import the component as shown below
 
 ```js
 import PopoverTooltip from 'react-native-popover-tooltip';
