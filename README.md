@@ -186,6 +186,7 @@ class App extends React.Component {
 | buttonComponent | node ||| Component that can be long pressed
 | items | `Array` | | Items to be rendered in menu. Each of item requires `label` as `string` or `function` if you want to render your own component and `onClick` as `function` to be called when you click item. |
 | componentWrapperStyle | Object | Optional | Style `Object` if you want to overwrite wrapper for your `buttonComponent`
+| componentContainerStyle | Object | Optional | Style `Object` if you want to overwrite container that is between wrapper and your `buttonComponent`
 | overlayStyle | Object | Optional | Style `Object` if you want to overwrite overlay style's.
 | onRequestClose | `function` | Optional, default `() => {}` | Modal onRequestClose required function on Android 
 | labelContainerStyle | `Object` | Optional | Style `Object` if you want to change default `TooltipMenuItem` View's style.
