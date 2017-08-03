@@ -89,3 +89,8 @@ class Example extends Component {
 AppRegistry.registerComponent('Example', () => Example);
 
 ```
+
+## Todo
+
+* add option to move button to right side of screen
+* add `isVisible` prop
