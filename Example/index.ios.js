@@ -15,7 +15,8 @@ import ReactNativeTooltipMenu from 'react-native-tooltip-menu';
 
 class Example extends Component {
   state = {
-    counter: 0,
+    counterItem1: 0,
+    counterItem2: 0
   };
 
   render() {
@@ -23,7 +24,8 @@ class Example extends Component {
       <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', padding: 25 }}>
         <View>
           <Text style={{ textAlign: 'center' }}>This is example of react-native-tooltip-menu</Text>
-          <Text style={{ textAlign: 'center' }}>Clicked: {this.state.counter}</Text>
+          <Text style={{ textAlign: 'center' }}>Clicked item1: {this.state.counterItem1}</Text>
+          <Text style={{ textAlign: 'center' }}>Clicked item2: {this.state.counterItem2}</Text>
         </View>
         <ReactNativeTooltipMenu
           buttonComponent={
@@ -40,11 +42,11 @@ class Example extends Component {
           items={[
             {
               label: 'Label #1',
-              onPress: () => this.setState({ counter: (this.state.counter + 1) })
+              onPress: () => this.setState({ counterItem1: this.state.counterItem1 + 1 })
             },
             {
               label: 'Label #2',
-              onPress: () => this.setState({ counter: (this.state.counter + 1) }),
+              onPress: () => this.setState({ counterItem2: this.state.counterItem2 + 1 }),
             },
           ]}
         />
