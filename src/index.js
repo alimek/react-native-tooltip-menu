@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 
 import TooltipMenuItem from './TooltipMenuItem';
@@ -161,27 +162,27 @@ class Tooltip extends React.Component {
 }
 
 Tooltip.propTypes = {
-  buttonComponent: React.PropTypes.node.isRequired,
-  items: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      label: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.func,
+  buttonComponent: PropTypes.node.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
       ]),
-      onClick: React.PropTypes.func,
+      onClick: PropTypes.func,
     }),
   ).isRequired,
-  componentWrapperStyle: React.PropTypes.object,
-  overlayStyle: React.PropTypes.object,
-  labelContainerStyle: React.PropTypes.object,
-  touchableItemStyle: React.PropTypes.object,
-  labelStyle: React.PropTypes.object,
-  widthType: React.PropTypes.oneOf([
+  componentWrapperStyle: PropTypes.object,
+  overlayStyle: PropTypes.object,
+  labelContainerStyle: PropTypes.object,
+  touchableItemStyle: PropTypes.object,
+  labelStyle: PropTypes.object,
+  widthType: PropTypes.oneOf([
     'auto',
     'half',
     'full',
   ]),
-  onRequestClose: React.PropTypes.func,
+  onRequestClose: PropTypes.func,
 };
 
 Tooltip.defaultProps = {

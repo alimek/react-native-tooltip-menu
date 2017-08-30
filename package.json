@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/alimek/react-native-tooltip-menu/issues"
   },
-  "homepage": "https://github.com/alimek/react-native-tooltip-menu#readme"
+  "homepage": "https://github.com/alimek/react-native-tooltip-menu#readme",
+  "dependencies": {
+    "prop-types": "^15.5.10"
+  }
 }
