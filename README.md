@@ -198,6 +198,7 @@ class App extends React.Component {
 | springConfig | `Object` | {tension: 100, friction: 7} | Configuration of spring animation. Attributes tension and friction control the behavior of the spring bumper effect.
 | opacityChangeDuration | `number` | 200 | Duration of opacity change of the overlay, during both appearance and dispearance.
 | buttonComponentExpandRatio | `number` | 1.0 | Ratio of button component expansion after tooltip poped up.
+| setBlow | `Boolean` | false | Sets the default position of the tooltip to appear below the intended target.
 
 ## Methods:
 
