@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactNative from 'react-native';
-
+import PropTypes from 'prop-types';
 import PopoverTooltipItem from './PopoverTooltipItem';
 
 const {
@@ -252,29 +252,29 @@ class PopoverTooltip extends React.Component {
 }
 
 PopoverTooltip.propTypes = {
-  buttonComponent: React.PropTypes.node.isRequired,
-  buttonComponentExpandRatio: React.PropTypes.number,
-  items: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      label: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.func,
+  buttonComponent: PropTypes.node.isRequired,
+  buttonComponentExpandRatio: PropTypes.number,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
       ]),
-      onClick: React.PropTypes.func,
+      onClick: PropTypes.func,
     }),
   ).isRequired,
-  componentWrapperStyle: React.PropTypes.object,
-  overlayStyle: React.PropTypes.object,
-  tooltipContainerStyle: React.PropTypes.object,
-  labelContainerStyle: React.PropTypes.object,
-  labelSeparatorColor: React.PropTypes.string,
-  labelStyle: React.PropTypes.object,
-  setBelow: React.PropTypes.bool,
-  animationType: React.PropTypes.oneOf([
+  componentWrapperStyle: PropTypes.object,
+  overlayStyle: PropTypes.object,
+  tooltipContainerStyle: PropTypes.object,
+  labelContainerStyle: PropTypes.object,
+  labelSeparatorColor: PropTypes.string,
+  labelStyle: PropTypes.object,
+  setBelow: PropTypes.bool,
+  animationType: PropTypes.oneOf([
     'timing',
     'spring'
   ]),
-  onRequestClose: React.PropTypes.func
+  onRequestClose: PropTypes.func
 };
 
 PopoverTooltip.defaultProps = {
