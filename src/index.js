@@ -275,7 +275,8 @@ PopoverTooltip.propTypes = {
     'timing',
     'spring'
   ]),
-  onRequestClose: PropTypes.func
+  onRequestClose: PropTypes.func,
+  triangleOffset: PropTypes.number
 };
 
 PopoverTooltip.defaultProps = {
