@@ -32,6 +32,7 @@ class PopoverTooltip extends React.Component {
       button_component_container_scale: 1,
       tooptip_triangle_down: !props.setBelow,
       tooltip_triangle_left_margin: 0,
+	  triangleOffset: props.triangleOffset,
       will_popup: false
     };
 
@@ -156,7 +157,7 @@ class PopoverTooltip extends React.Component {
                 >
                   {this.state.tooltip_triangle_down
                   ? null
-                  : <View style={[styles.triangle_up, {marginLeft:this.state.tooltip_triangle_left_margin}, this.props.labelContainerStyle? {borderBottomColor: this.props.labelContainerStyle.backgroundColor} : null]} />
+                  : <View style={[styles.triangle_up, {marginLeft:this.state.tooltip_triangle_left_margin, left: this.state.triangleOffset}, this.props.labelContainerStyle? {borderBottomColor: this.props.labelContainerStyle.backgroundColor} : null]} />
                   }
                   <View style={[{borderRadius:5, backgroundColor:'white', alignSelf:'stretch', overflow:'hidden'}, this.props.tooltipContainerStyle]}>
                     {items.map((item, index) => {
@@ -178,7 +179,7 @@ class PopoverTooltip extends React.Component {
                     })}
                   </View>
                   {this.state.tooltip_triangle_down
-                  ? <View style={[styles.triangle_down, {marginLeft:this.state.tooltip_triangle_left_margin}, this.props.labelContainerStyle? {borderTopColor: this.props.labelContainerStyle.backgroundColor} : null]} />
+                  ? <View style={[styles.triangle_down, {marginLeft:this.state.tooltip_triangle_left_margin, left: this.state.triangleOffset}, this.props.labelContainerStyle? {borderTopColor: this.props.labelContainerStyle.backgroundColor} : null]} />
                   : null
                   }
                 </View>
@@ -282,7 +283,8 @@ PopoverTooltip.defaultProps = {
   labelSeparatorColor: '#E1E1E1',
   onRequestClose: () => {},
   setBelow: false,
-  delayLongPress: 100
+  delayLongPress: 100,
+  triangleOffset: 0
 };
 
 export default PopoverTooltip;
