@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 
 const {
@@ -8,9 +9,9 @@ const {
   TouchableOpacity,
 } = ReactNative;
 
-const StylePropType = React.PropTypes.oneOfType([
-  React.PropTypes.array,
-  React.PropTypes.object,
+const StylePropType = PropTypes.oneOfType([
+  PropTypes.array,
+  PropTypes.object,
 ]);
 
 const PopoverTooltipItem = ({ onPress, containerStyle, label, labelStyle }) => (
@@ -26,10 +27,10 @@ const PopoverTooltipItem = ({ onPress, containerStyle, label, labelStyle }) => (
 );
 
 PopoverTooltipItem.propTypes = {
-  onPress: React.PropTypes.func.isRequired,
-  label: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.func,
+  onPress: PropTypes.func.isRequired,
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
   ]).isRequired,
   containerStyle: StylePropType,
   labelStyle: StylePropType,
