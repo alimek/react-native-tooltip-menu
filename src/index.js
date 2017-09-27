@@ -30,7 +30,7 @@ class PopoverTooltip extends React.Component {
       opacity: new Animated.Value(0),
       tooltip_container_scale: new Animated.Value(0),
       button_component_container_scale: 1,
-      tooptip_triangle_down: !props.setBelow,
+      tooltip_triangle_down: !props.setBelow,
       tooltip_triangle_left_margin: 0,
 	  triangleOffset: props.triangleOffset,
       will_popup: false
@@ -126,8 +126,8 @@ class PopoverTooltip extends React.Component {
                     if (this.state.will_popup && tooltip_container_width > 0 && tooltip_container_height > 0) {
                       this._component_wrapper.measure((x, y, width, height, pageX, pageY) => {
                         let tooltip_container_x_final=pageX+tooltip_container_width+(width-tooltip_container_width)/2>window.width? window.width-tooltip_container_width : pageX+(width-tooltip_container_width)/2;
-	                    let tooltip_container_y_final = this.state.tooptip_triangle_down ? pageY - tooltip_container_height - 20 : pageY + tooltip_container_height - 20;
-                        let tooltip_triangle_down = this.state.tooptip_triangle_down;
+	                    let tooltip_container_y_final = this.state.tooltip_triangle_down ? pageY - tooltip_container_height - 20 : pageY + tooltip_container_height - 20;
+                        let tooltip_triangle_down = this.state.tooltip_triangle_down;
                         if (pageY-tooltip_container_height-20<0) {
                           tooltip_container_y_final=pageY+height+20;
                           tooltip_triangle_down=false;
@@ -157,7 +157,7 @@ class PopoverTooltip extends React.Component {
                 >
                   {this.state.tooltip_triangle_down
                   ? null
-                  : <View style={[styles.triangle_up, {marginLeft:this.state.tooltip_triangle_left_margin, left: this.state.triangleOffset}, this.props.labelContainerStyle? {borderBottomColor: this.props.labelContainerStyle.backgroundColor} : null]} />
+                  : <View style={[styles.triangle_up, { marginLeft:this.state.tooltip_triangle_left_margin, left: this.state.triangleOffset }, this.props.labelContainerStyle? { borderBottomColor: this.props.labelContainerStyle.backgroundColor } : null]} />
                   }
                   <View style={[{borderRadius:5, backgroundColor:'white', alignSelf:'stretch', overflow:'hidden'}, this.props.tooltipContainerStyle]}>
                     {items.map((item, index) => {
@@ -179,7 +179,7 @@ class PopoverTooltip extends React.Component {
                     })}
                   </View>
                   {this.state.tooltip_triangle_down
-                  ? <View style={[styles.triangle_down, {marginLeft:this.state.tooltip_triangle_left_margin, left: this.state.triangleOffset}, this.props.labelContainerStyle? {borderTopColor: this.props.labelContainerStyle.backgroundColor} : null]} />
+                  ? <View style={[styles.triangle_down, { marginLeft:this.state.tooltip_triangle_left_margin, left: this.state.triangleOffset }, this.props.labelContainerStyle? { borderTopColor: this.props.labelContainerStyle.backgroundColor } : null]} />
                   : null
                   }
                 </View>
