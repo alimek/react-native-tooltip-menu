@@ -199,6 +199,7 @@ class App extends React.Component {
 | opacityChangeDuration | `number` | 200 | Duration of opacity change of the overlay, during both appearance and dispearance.
 | buttonComponentExpandRatio | `number` | 1.0 | Ratio of button component expansion after tooltip poped up.
 | setBelow | `Boolean` | false | Sets the default position of the tooltip to appear below the intended target.
+| triangleOffset | `Number` | 0 | Number of pixels to offset triangle from center. Positive numbers will push right. Negative Numbers will push left.
 
 ## Methods:
 
