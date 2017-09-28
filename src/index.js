@@ -132,6 +132,10 @@ class PopoverTooltip extends React.Component {
                           tooltip_container_y_final=pageY+height+20;
                           tooltip_triangle_down=false;
                         }
+                        if (pageY + tooltip_container_height + 80 > window.height) {
+                        	tooltip_container_y_final = pageY - tooltip_container_height - 20;
+                        	tooltip_triangle_down = true
+                        }
                         let tooltip_container_x = this.state.tooltip_container_scale.interpolate({
                           inputRange: [0, 1],
                           outputRange: [tooltip_container_x_final, tooltip_container_x_final]
