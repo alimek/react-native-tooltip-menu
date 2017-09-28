@@ -1,6 +1,6 @@
 {
   "name": "react-native-popover-tooltip",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "ReactNative component showing tooltip with menu items.",
   "main": "src/index.js",
   "scripts": {
