@@ -20,5 +20,18 @@
   "bugs": {
     "url": "https://github.com/wookoinc/react-native-popover-tooltip/issues"
   },
-  "homepage": "https://github.com/wookoinc/react-native-popover-tooltip"
+  "homepage": "https://github.com/wookoinc/react-native-popover-tooltip",
+  "dependencies": {
+    "invariant": "^2.2.2",
+    "prop-types": "^15.6.0"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "react": "^16.0.0",
+    "react-native": "^0.50.1",
+    "flow-bin": "^0.56.0"
+  }
 }
