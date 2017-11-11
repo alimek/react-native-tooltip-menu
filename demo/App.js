@@ -33,8 +33,8 @@ export default class App extends React.Component {
               onPress: () => {}
             }
           ]}
-          // animationType='timming'
-          // using the default timming animation
+          // animationType='timing'
+          // using the default timing animation
           />
 
         <View style={{height:40}}/>
@@ -136,9 +136,9 @@ export default class App extends React.Component {
               onPress: () => {}
             }
           ]}
-          // animationType='timming'
-          // using the default timming animation
-          timmingConfig={{duration: 1000}}
+          // animationType='timing'
+          // using the default timing animation
+          timingConfig={{duration: 1000}}
           opacityChangeDuration={1000} />
 
         <View style={{height: 40}}/>
