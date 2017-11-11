@@ -63,6 +63,7 @@ type State = {
   oppositeOpacity: ?Animated.Interpolation,
   tooltipContainerX: ?Animated.Interpolation,
   tooltipContainerY: ?Animated.Interpolation,
+  buttonComponentOpacity: number,
 };
 class PopoverTooltip extends React.PureComponent<Props, State> {
 
@@ -120,6 +121,7 @@ class PopoverTooltip extends React.PureComponent<Props, State> {
       oppositeOpacity: undefined,
       tooltipContainerX: undefined,
       tooltipContainerY: undefined,
+      buttonComponentOpacity: 0,
     };
   }
 
@@ -214,6 +216,7 @@ class PopoverTooltip extends React.PureComponent<Props, State> {
           tooltipTriangleDown,
           tooltipTriangleLeftMargin,
           buttonComponentContainerScale,
+          buttonComponentOpacity: 1,
         },
         this.showZoomingInAnimation,
       );
@@ -344,7 +347,9 @@ class PopoverTooltip extends React.PureComponent<Props, State> {
             width: this.state.width,
             height: this.state.height,
             backgroundColor: 'transparent',
-            opacity: 1,
+            opacity: this.state.buttonComponentOpacity, // At the first frame, the button will be rendered
+                                                        // in the top-left corner. So we dont render it
+                                                        // until its position has been calculated.
             transform: [
               { scale: this.state.buttonComponentContainerScale },
             ],
