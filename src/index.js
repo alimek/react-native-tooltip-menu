@@ -294,7 +294,7 @@ class PopoverTooltip extends React.PureComponent<Props, State> {
         ref={this.wrapperRef}
         style={this.props.componentWrapperStyle}
         onPress={this.props.onPress}
-        onLongPress={this.toggle}
+        onLongPress={Platform.OS === 'ios' ? this.toggle : null}
         delayLongPress={this.props.delayLongPress}
         activeOpacity={1.0}
       >
