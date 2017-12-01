@@ -9,6 +9,7 @@ import {
   View,
   Modal,
   Animated,
+  Platform,
   TouchableOpacity,
   StyleSheet,
   Dimensions,
@@ -233,6 +234,8 @@ class PopoverTooltip extends React.PureComponent<Props, State> {
       ],
     };
 
+    const posYDistance = Platform.OS === 'ios' ? this.state.y : this.state.y - 20;
+
     const items = this.props.items.map((item, index) => {
       const classes = [ this.props.labelContainerStyle ];
 
@@ -343,7 +346,7 @@ class PopoverTooltip extends React.PureComponent<Props, State> {
           <Animated.View style={{
             position: 'absolute',
             left: this.state.x,
-            top: this.state.y,
+            top: posYDistance,
             width: this.state.width,
             height: this.state.height,
             backgroundColor: 'transparent',
