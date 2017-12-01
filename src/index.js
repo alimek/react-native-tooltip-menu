@@ -108,7 +108,6 @@ class PopoverTooltip extends React.PureComponent<Props, State> {
     super(props);
     this.state = {
       isModalOpen: false,
-      androidY: 0,
       x: 0,
       y: 0,
       width: 0,
@@ -125,13 +124,6 @@ class PopoverTooltip extends React.PureComponent<Props, State> {
       tooltipContainerY: undefined,
       buttonComponentOpacity: 0,
     };
-  }
-
-  componentWillUpdate(nextProps, nextState){
-    if (Platform.OS === 'anroid' && !this.gotAndroidY) {
-        this.setState({androidY: nextState.y});
-        this.gotAndroidY = true;
-    }
   }
 
   componentWillMount() {
@@ -242,7 +234,7 @@ class PopoverTooltip extends React.PureComponent<Props, State> {
       ],
     };
 
-    const posYDistance = this.state.androidY ? this.state.androidY : this.state.y;
+    const posYDistance = Platform.OS === 'ios' ? this.state.y : 0;
 
     const items = this.props.items.map((item, index) => {
       const classes = [ this.props.labelContainerStyle ];
