@@ -234,7 +234,7 @@ class PopoverTooltip extends React.PureComponent<Props, State> {
       ],
     };
 
-    const posYDistance = Platform.OS === 'ios' ? this.state.y : 0;
+    const posYDistance = Platform.OS === 'ios' ? this.state.y : this.state.y - 25;
 
     const items = this.props.items.map((item, index) => {
       const classes = [ this.props.labelContainerStyle ];
