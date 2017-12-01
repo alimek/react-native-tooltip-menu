@@ -293,9 +293,7 @@ class PopoverTooltip extends React.PureComponent<Props, State> {
       <TouchableOpacity
         ref={this.wrapperRef}
         style={this.props.componentWrapperStyle}
-        onPress={this.props.onPress}
-        onLongPress={Platform.OS === 'ios' ? this.toggle : null}
-        delayLongPress={this.props.delayLongPress}
+        onPress={this.toggle}
         activeOpacity={1.0}
       >
         <Animated.View style={[
@@ -438,6 +436,7 @@ class PopoverTooltip extends React.PureComponent<Props, State> {
     if (this.state.isModalOpen) {
       this.hideModal();
     } else {
+      this.props.onPress();
       this.openModal();
     }
   }
