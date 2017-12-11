@@ -41,6 +41,7 @@ import ReactNativeMenuTooltip from 'react-native-tooltip-menu';
 | onRequestClose | `function` | Optional, default `() => {}` | Modal onRequestClose required function on Android 
 | labelContainerStyle | `Object` | Optional | Style `Object` if you want to change default `TooltipMenuItem` View's style.
 | labelStyle | `Object` | Optional | Style `Object` if you want to change default `TooltipMenuItem` Text's style.
+| modalButtonStyle | `Object` | optional | Style. for `TouchabelOpacity` when modal is opened.
 # Example
 
 ```js

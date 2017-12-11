@@ -92,6 +92,7 @@ class Tooltip extends React.Component {
       labelContainerStyle,
       touchableItemStyle,
       labelStyle,
+      modalButtonStyle,
     } = this.props;
     const { isModalOpen } = this.state;
     const { onRequestClose } = this.props;
@@ -115,7 +116,8 @@ class Tooltip extends React.Component {
           <View style={[styles.overlay, overlayStyle]}>
             <TouchableOpacity
               activeOpacity={1}
-              focusedOpacity={1} style={{ flex: 1 }}
+              focusedOpacity={1}
+              style={[{ flex: 1 }, modalButtonStyle]}
               onPress={this.hideModal}
             >
               <View style={[styles.component]}>
