@@ -24,7 +24,7 @@ yarn add react-native-tooltip-menu --save
 then 
 
 ```js
-import ReactNativeMenuTooltip from 'react-native-tooltip-menu';
+import ReactNativeTooltipMenu from 'react-native-tooltip-menu';
 ```
 
 # Configuration
