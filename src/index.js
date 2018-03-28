@@ -1,7 +1,12 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 
+import styles from './styles';
+import type {
+  ReactNativeTooltipMenuPropTypes as PropTypes,
+  ReactNativeTooltipMenuState as State,
+} from './types';
 import TooltipMenuItem from './TooltipMenuItem';
 
 const {
@@ -9,7 +14,6 @@ const {
   Modal,
   Animated,
   TouchableOpacity,
-  StyleSheet,
   Dimensions,
 } = ReactNative;
 
@@ -30,27 +34,16 @@ const mapWight = (type) => {
   }
 };
 
-class Tooltip extends React.Component {
-  constructor(props) {
-    super(props);
+class Tooltip extends React.Component<PropTypes, State> {
+  state = {
+    isOpen: false,
+    opacity: new Animated.Value(0),
+    componentHeight: 0,
+  };
 
-    this.state = {
-      isModalOpen: false,
-      opacity: new Animated.Value(0),
-      componentHeight: 0,
-    };
+  toggleModal = () => this.setState({ isOpen: !this.state.isOpen });
 
-    this.toggleModal = this.toggleModal.bind(this);
-    this.openModal = this.openModal.bind(this);
-    this.hideModal = this.hideModal.bind(this);
-  }
-
-  toggleModal() {
-    const { isModalOpen } = this.state;
-    this.setState({ isModalOpen: !isModalOpen });
-  }
-
-  openModal() {
+  openModal = () => {
     this.toggleModal();
     Animated
       .timing(
@@ -61,9 +54,9 @@ class Tooltip extends React.Component {
         },
       )
       .start();
-  }
+  };
 
-  hideModal() {
+  hideModal = () => {
     Animated
       .timing(
         this.state.opacity,
@@ -73,14 +66,14 @@ class Tooltip extends React.Component {
         },
       )
       .start(this.toggleModal);
-  }
+  };
 
-  handleClick(onClickItem) {
-    const method = this.state.isModalOpen ? this.hideModal : this.openModal;
+  handleClick = (onClickItem) => {
+    const method = this.state.isOpen ? this.hideModal : this.openModal;
     method();
 
     onClickItem();
-  }
+  };
 
   render() {
     const {
@@ -94,22 +87,20 @@ class Tooltip extends React.Component {
       labelStyle,
       modalButtonStyle,
     } = this.props;
-    const { isModalOpen } = this.state;
+    const { isOpen } = this.state;
     const { onRequestClose } = this.props;
     const widthStyle = mapWight(widthType);
 
     return (
       <View style={styles.component}>
-        <View
-          style={[componentWrapperStyle]}
-          onLayout={event => this.setState({ componentHeight: event.nativeEvent.layout.height })}
+        <TouchableOpacity
+          onPress={this.openModal}
+          onLayout={({ nativeEvent }) => this.setState({ componentHeight: nativeEvent.layout.height })}
         >
-          <TouchableOpacity onPress={this.openModal}>
-            {buttonComponent}
-          </TouchableOpacity>
-        </View>
+          {buttonComponent}
+        </TouchableOpacity>
         <Modal
-          visible={isModalOpen}
+          visible={isOpen}
           transparent
           onRequestClose={onRequestClose}
         >
@@ -151,7 +142,7 @@ class Tooltip extends React.Component {
                   })}
                 </Animated.View>
                 <Animated.View style={[styles.triangle, { opacity: this.state.opacity }]} />
-                <TouchableOpacity onPress={isModalOpen ? this.hideModal : this.openModal}>
+                <TouchableOpacity onPress={isOpen ? this.hideModal : this.openModal}>
                   {buttonComponent}
                 </TouchableOpacity>
               </View>
@@ -163,71 +154,4 @@ class Tooltip extends React.Component {
   }
 }
 
-Tooltip.propTypes = {
-  buttonComponent: PropTypes.node.isRequired,
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-      ]),
-      onClick: PropTypes.func,
-    }),
-  ).isRequired,
-  componentWrapperStyle: PropTypes.object,
-  overlayStyle: PropTypes.object,
-  labelContainerStyle: PropTypes.object,
-  touchableItemStyle: PropTypes.object,
-  labelStyle: PropTypes.object,
-  widthType: PropTypes.oneOf([
-    'auto',
-    'half',
-    'full',
-  ]),
-  onRequestClose: PropTypes.func,
-};
-
-Tooltip.defaultProps = {
-  widthType: 'half',
-  onRequestClose: () => {},
-};
-
 export default Tooltip;
-
-const styles = StyleSheet.create({
-  overlay: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    flex: 1,
-  },
-  tooltipMargin: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#E1E1E1',
-  },
-  component: {
-    position: 'absolute',
-    bottom: 15,
-    left: 15,
-  },
-  tooltipContainer: {
-    backgroundColor: 'white',
-    borderRadius: 10,
-    position: 'absolute',
-  },
-  triangle: {
-    position: 'absolute',
-    top: -10,
-    left: 22,
-    width: 10,
-    height: 10,
-    backgroundColor: 'transparent',
-    borderStyle: 'solid',
-    borderTopWidth: 10,
-    borderRightWidth: 10,
-    borderBottomWidth: 0,
-    borderLeftWidth: 10,
-    borderTopColor: 'white',
-    borderRightColor: 'transparent',
-    borderBottomColor: 'transparent',
-    borderLeftColor: 'transparent',
-  },
-});

@@ -1,0 +1,10 @@
+{
+  "presets": ["expo"],
+  "plugins": [
+    ["module-resolver", {
+      "alias": {
+        "react-native-tooltip-menu": ".."
+      }
+    }]
+  ]
+}

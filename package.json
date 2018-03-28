@@ -1,6 +1,6 @@
 {
   "name": "react-native-tooltip-menu",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "ReactNative component showing tooltip with menu items.",
   "main": "src/index.js",
   "scripts": {
@@ -19,7 +19,26 @@
     "url": "https://github.com/alimek/react-native-tooltip-menu/issues"
   },
   "homepage": "https://github.com/alimek/react-native-tooltip-menu#readme",
+  "peerDependencies": {
+    "prop-types": "^15.6.1",
+    "react": "*",
+    "react-native": "*",
+    "react-native-vector-icons": "*"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "^0.68.0",
+    "prettier": "^1.11.1"
+  },
   "dependencies": {
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.6.1",
+    "react": "^16.2.0",
+    "react-native": "^0.54.3",
+    "styled-components": "^3.2.3"
   }
 }
