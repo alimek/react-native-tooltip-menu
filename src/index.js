@@ -146,6 +146,7 @@ class Tooltip extends React.Component {
                         containerStyle={classes}
                         touchableStyle={touchableItemStyle}
                         labelStyle={labelStyle}
+                        testID={item.testID}
                       />
                     );
                   })}

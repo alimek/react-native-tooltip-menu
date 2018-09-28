@@ -1,6 +1,6 @@
 {
   "name": "react-native-tooltip-menu",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "ReactNative component showing tooltip with menu items.",
   "main": "src/index.js",
   "scripts": {
