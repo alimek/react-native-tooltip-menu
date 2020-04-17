@@ -58,6 +58,7 @@ class Tooltip extends React.Component {
         {
           toValue: 1,
           duration: 300,
+          useNativeDriver: true,
         },
       )
       .start();
@@ -70,6 +71,7 @@ class Tooltip extends React.Component {
         {
           toValue: 0,
           duration: 300,
+          useNativeDriver: true,
         },
       )
       .start(this.toggleModal);
