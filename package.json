@@ -1,6 +1,6 @@
 {
   "name": "react-native-tooltip-menu",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "description": "Tooltip Menu",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -95,7 +95,10 @@
       ]
     }
   },
-  "eslintIgnore": ["node_modules/", "lib/"],
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ],
   "prettier": {
     "quoteProps": "consistent",
     "singleQuote": true,
@@ -123,6 +126,13 @@
   "@react-native-community/bob": {
     "source": "src",
     "output": "lib",
-    "targets": ["commonjs", "module", "typescript"]
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
+  },
+  "dependencies": {
+    "expo": "^37.0.12"
   }
 }
