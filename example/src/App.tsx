@@ -8,6 +8,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Result: {counter}</Text>
       <TooltipMenu
+        triangleStyle={{ borderTopColor: 'green' }}
         buttonComponent={
           <View
             style={{

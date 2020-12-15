@@ -49,6 +49,7 @@ interface Props {
   labelStyle?: ViewStyle;
   widthType: WidthType;
   onRequestClose?: () => void;
+  triangleStyle?: ViewStyle;
 }
 
 interface State {
@@ -141,6 +142,7 @@ class Tooltip extends React.Component<Props, State> {
       touchableItemStyle,
       labelStyle,
       modalButtonStyle,
+      triangleStyle,
     } = this.props;
     const { isModalOpen, isButtonDisabled } = this.state;
     const { onRequestClose } = this.props;
@@ -214,7 +216,11 @@ class Tooltip extends React.Component<Props, State> {
                   })}
                 </Animated.View>
                 <Animated.View
-                  style={[styles.triangle, { opacity: this.state.opacity }]}
+                  style={[
+                    styles.triangle,
+                    triangleStyle,
+                    { opacity: this.state.opacity },
+                  ]}
                 />
                 <TouchableOpacity
                   disabled={isButtonDisabled}
