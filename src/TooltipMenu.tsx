@@ -105,10 +105,9 @@ export const TooltipMenu = ({
 
   return (
     <>
-      <View style={style}>
+      <View style={style} ref={buttonRef}>
         <TouchableOpacity
           onPress={openModal}
-          ref={buttonRef}
           onLayout={(event) => calculatePosition(event)}
         >
           {children}
