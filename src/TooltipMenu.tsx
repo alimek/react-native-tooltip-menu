@@ -28,7 +28,7 @@ type Props = {
   modalButtonStyle?: ViewStyle;
   labelStyle?: ViewStyle;
   widthType?: WidthType;
-  onRequestClose: () => void;
+  onRequestClose?: () => void;
   trianglePosition?: TrianglePosition;
 };
 
