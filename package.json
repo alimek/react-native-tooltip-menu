@@ -1,6 +1,6 @@
 {
   "name": "react-native-tooltip-menu",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "ReactNative component showing tooltip with menu items.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -45,7 +45,6 @@
     "url": "https://github.com/alimek/react-native-tooltip-menu/issues"
   },
   "homepage": "https://github.com/alimek/react-native-tooltip-menu#readme",
-
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
