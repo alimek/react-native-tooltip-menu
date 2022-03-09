@@ -1,4 +1,21 @@
 {
-  "name": "Example",
-  "displayName": "Example"
+  "name": "react-native-tooltip-menu-example",
+  "expo": {
+    "name": "react-native-tooltip-menu-example",
+    "slug": "react-native-tooltip-menu-example",
+    "description": "Example app for react-native-tooltip-menu",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
 }

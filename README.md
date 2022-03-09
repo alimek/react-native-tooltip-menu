@@ -9,97 +9,74 @@ Component for specfied case. Left bottom button with nice looking menu tooltip w
 
 
 # How to install
- 
+
 Via NPM
 
 ```bash
-npm install react-native-tooltip-menu --save
+npm install react-native-tooltip-menu
 ```
 
-or via yarn
+Via yarn
 ```bash
-yarn add react-native-tooltip-menu --save
+yarn add react-native-tooltip-menu
 ```
 
-then 
+then
 
 ```js
-import ReactNativeTooltipMenu from 'react-native-tooltip-menu';
+import { TooltipMenu } from 'react-native-tooltip-menu';
 ```
 
 # Configuration
 
 ## ReactNativeTooltipMenu:
 
-| Property | Type | Default | Description |
-|----------------|---------------|-----------|--------------------------------------|
-| buttonComponent | |||
-| items | `Array` | | Items to be rendered in menu. Each of item requires `label` as `string` or `function` if you want to render your own component and `onClick` as `function` to be called when you click item. |
-| componentWrapperStyle | Object | Optional | Style `Object` if you want to overwrite wrapper for your `buttonComponent`
-| overlayStyle | Object | Optional | Style `Object` if you want to overwrite overlay style's.
-| widthType | `auto`, `half` or `full` | `half` | Menu items width. `Auto` = automatically set width to your longest test, `half` = always 50% your screen width, `full` = 100% screen width.
-| onRequestClose | `function` | Optional, default `() => {}` | Modal onRequestClose required function on Android 
-| labelContainerStyle | `Object` | Optional | Style `Object` if you want to change default `TooltipMenuItem` View's style.
-| labelStyle | `Object` | Optional | Style `Object` if you want to change default `TooltipMenuItem` Text's style.
-| modalButtonStyle | `Object` | optional | Style. for `TouchabelOpacity` when modal is opened.
+| Property            | Type                      | Default                                                    | Description                                                                                                                                                                                  |
+|---------------------|---------------------------|------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| children            | ReactNode                 | required                                                       |                                                                                                                                                                                              |
+| items               | `Array`                   | required                             | Items to be rendered in menu. Each of item requires `label` as `string` or `function` if you want to render your own component and `onPress` as `function` to be called when you click item. |
+| style               | `ViewStyle`               | Optional                                                   | Style `Object` if you want to overwrite wrapper for your `children`|
+| overlayStyle        | Object                    | Optional                                                   | Style `Object` if you want to overwrite overlay style's.|
+| widthType           | `auto`, `half` or `full`  | `auto`                                                     | Menu items width. `auto` = automatically set width to your longest test, `half` = always 50% your screen width, `full` = 100% screen width.|
+| onRequestClose      | `function`                | Optional, default `() => {}`                               | Modal onRequestClose required function on Android|
+| labelContainerStyle | `Object`                  | Optional                                                   | Style `Object` if you want to change default `TooltipMenuItem` View's style.|
+| labelStyle          | `Object`                  | Optional                                                   | Style `Object` if you want to change default `TooltipMenuItem` Text's style.|
+| modalButtonStyle    | `Object`                  | optional                                                   | Style. for `TouchabelOpacity` when modal is opened.|
+| trianglePosition    | `left`, `center`, `right` | `center`                                                   | Position of the triangle.|
 # Example
 
 ```js
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  Text,
-  View
-} from 'react-native';
-import ReactNativeTooltipMenu from 'react-native-tooltip-menu';
+import { TooltipMenu } from 'react-native-tooltip-menu';
 
-class Example extends Component {
-  state = {
-    counterItem1: 0,
-    counterItem2: 0
-  };
-
-  render() {
-    return (
-      <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', padding: 25 }}>
-        <View>
-          <Text style={{ textAlign: 'center' }}>This is example of react-native-tooltip-menu</Text>
-          <Text style={{ textAlign: 'center' }}>Clicked item1: {this.state.counterItem1}</Text>
-          <Text style={{ textAlign: 'center' }}>Clicked item2: {this.state.counterItem2}</Text>
-        </View>
-        <ReactNativeTooltipMenu
-          buttonComponent={
-            <View
-              style={{
-                backgroundColor: 'purple',
-                padding: 10,
-                borderRadius: 25
-              }}
-            >
-              <Text style={{ color: 'white', flex: 1 }}>Click me to show tooltip!</Text>
-            </View>
-          }
-          items={[
-            {
-              label: 'Label #1',
-              onPress: () => this.setState({ counterItem1: this.state.counterItem1 + 1 })
-            },
-            {
-              label: 'Label #2',
-              onPress: () => this.setState({ counterItem2: this.state.counterItem2 + 1 }),
-            },
-          ]}
-        />
+const Example = () => (
+  <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', padding: 25 }}>
+    <View>
+      <Text style={{ textAlign: 'center' }}>This is example of react-native-tooltip-menu</Text>
+      <Text style={{ textAlign: 'center' }}>Clicked item1: {counter1}</Text>
+      <Text style={{ textAlign: 'center' }}>Clicked item2: {counter2}</Text>
+    </View>
+    <TooltipMenu
+      items={[
+        {
+          label: 'Label #1',
+          onPress: () => incrementCounter1()
+        },
+        {
+          label: 'Label #2',
+          onPress: () => incrementCounter2(),
+        },
+      ]}
+    >
+      <View
+        style={{
+          backgroundColor: 'purple',
+          padding: 10,
+          borderRadius: 25
+        }}
+      >
+        <Text style={{ color: 'white', flex: 1 }}>Click me to show tooltip!</Text>
       </View>
-    )
-  }
-}
-
-AppRegistry.registerComponent('Example', () => Example);
-
+    </TooltipMenu>
+  </View>
+);
 ```
-
-## Todo
-
-* add option to move button to right side of screen
-* add `isVisible` prop
