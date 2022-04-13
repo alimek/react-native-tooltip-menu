@@ -1,6 +1,6 @@
 {
   "name": "react-native-tooltip-menu",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "ReactNative component showing tooltip with menu items.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
