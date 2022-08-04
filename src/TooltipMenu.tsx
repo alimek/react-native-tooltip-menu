@@ -105,15 +105,13 @@ export const TooltipMenu = ({
   };
 
   return (
-    <>
-      <View style={style} ref={buttonRef}>
-        <TouchableOpacity
-          onPress={openModal}
-          onLayout={(event) => calculatePosition(event)}
-        >
-          {children}
-        </TouchableOpacity>
-      </View>
+    <View style={style} ref={buttonRef}>
+      <TouchableOpacity
+        onPress={openModal}
+        onLayout={(event) => calculatePosition(event)}
+      >
+        {children}
+      </TouchableOpacity>
       <Modal visible={isModalOpen} transparent onRequestClose={onRequestClose}>
         <View style={[styles.overlay, overlayStyle]} />
         <TouchableOpacity
@@ -197,7 +195,7 @@ export const TooltipMenu = ({
           />
         </TouchableOpacity>
       </Modal>
-    </>
+    </View>
   );
 };
 
