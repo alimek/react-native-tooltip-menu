@@ -105,7 +105,7 @@ export const TooltipMenu = ({
   };
 
   return (
-    <View style={style} ref={buttonRef}>
+    <View style={style} ref={buttonRef} collapsable={false}>
       <TouchableOpacity
         onPress={openModal}
         onLayout={(event) => calculatePosition(event)}
