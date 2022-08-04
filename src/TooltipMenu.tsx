@@ -10,7 +10,6 @@ import {
   useWindowDimensions,
   LayoutChangeEvent,
   TouchableOpacityProps,
-  Platform,
 } from 'react-native';
 import { TooltipMenuItem } from './TooltipMenuItem';
 
@@ -137,13 +136,7 @@ export const TooltipMenu = ({
               { minWidth: calculateItemWith() },
               styles.tooltipContainer,
               componentPosition && {
-                bottom:
-                  windowHeight -
-                  componentPosition.y +
-                  Platform.select({
-                    default: 10,
-                    android: -15,
-                  }),
+                bottom: windowHeight - componentPosition.y + 10,
                 left: componentPosition.x,
               },
               { opacity },
