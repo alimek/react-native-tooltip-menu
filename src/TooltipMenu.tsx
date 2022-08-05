@@ -10,6 +10,7 @@ import {
   useWindowDimensions,
   LayoutChangeEvent,
   TouchableOpacityProps,
+  StatusBar,
 } from 'react-native';
 import { TooltipMenuItem } from './TooltipMenuItem';
 
@@ -136,7 +137,11 @@ export const TooltipMenu = ({
               { minWidth: calculateItemWith() },
               styles.tooltipContainer,
               componentPosition && {
-                bottom: windowHeight - componentPosition.y + 10,
+                bottom:
+                  windowHeight -
+                  componentPosition.y +
+                  10 -
+                  (StatusBar.currentHeight || 0),
                 left: componentPosition.x,
               },
               { opacity },
